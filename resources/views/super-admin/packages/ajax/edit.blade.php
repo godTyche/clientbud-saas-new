@@ -290,12 +290,10 @@
                 <input type="hidden" name="unchecked_value" id="unchecked_value">
 
                 <div class="row p-3">
-                    @if($package->default == 'no')
-                        <div class="col-md-12">
-                            <x-forms.textarea :fieldLabel="__('app.description')" fieldName="description"
-                                              :fieldValue="$package->description" fieldId="description"/>
-                        </div>
-                    @endif
+                    <div class="col-md-12">
+                        <x-forms.textarea :fieldLabel="__('app.description')" fieldName="description"
+                                            :fieldValue="$package->description" fieldId="description"/>
+                    </div>
 
                     @if(isset($trial))
                         <div class="col-md-3">

@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 use App\Models\SuperAdmin\Package;
+use App\Models\Module;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -20,6 +21,12 @@ ApiRoute::group(['namespace' => 'App\Http\Controllers'], function () {
 });
 
 Route::get('/get_packages', function(){
-    $packages = Package::get();
-    return $packages;
+    $packages = Package::where('default','no')->get();
+    $modules = Module::select('module_name','module_description')->get();
+    foreach($modules as $module) {
+        $module_desc[$module->module_name] = $module->module_description;
+    }
+    $data['packages'] = $packages;
+    $data['modules'] = $module_desc;
+    return $data;
 });
